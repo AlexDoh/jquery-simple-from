@@ -1,0 +1,12 @@
+.error {
+    margin-top: 5px;
+    color: red;
+}
+
+.invalid {
+    border: 1px solid red;
+}
+
+.selection-form--submitted {
+    display: none;
+}
