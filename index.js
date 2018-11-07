@@ -6,7 +6,15 @@ $(document).ready(() => {
     $(`[name=${inputData.name}]`).addClass('invalid');
   };
 
-  const validateSelectionForm = (event) => {
+  const checkValidBirthday = date => {
+    const dateTime = Date.parse(date);
+    const currentDate = new Date();
+    const maxDate = currentDate.getTime();
+    const minDate = currentDate.setFullYear(currentDate.getFullYear() - 100);
+    return dateTime >= minDate && dateTime <= maxDate;
+  };
+
+  const validateSelectionForm = event => {
     event.preventDefault();
 
     const textRegExp = /^[^'"]*$/;
@@ -30,6 +38,10 @@ $(document).ready(() => {
         }
         if (input.prop('type') === 'email' && !emailRegExp.test(inputData.value)) {
           processElementIfNotValid(input, inputData, 'has bad format');
+          validForm = false;
+        }
+        if (input.prop('type') === 'date' && !checkValidBirthday(inputData.value)) {
+          processElementIfNotValid(input, inputData, 'is not valid');
           validForm = false;
         }
       } else {
