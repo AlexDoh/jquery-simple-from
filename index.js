@@ -14,6 +14,12 @@ $(document).ready(() => {
     return dateTime >= minDate && dateTime <= maxDate;
   };
 
+  $('[name=birthday]').datepicker({
+    yearRange: '-100:+0',
+    changeMonth: true,
+    changeYear: true,
+  });
+
   const validateSelectionForm = event => {
     event.preventDefault();
 
@@ -40,7 +46,7 @@ $(document).ready(() => {
           processElementIfNotValid(input, inputData, 'has bad format');
           validForm = false;
         }
-        if (input.prop('type') === 'date' && !checkValidBirthday(inputData.value)) {
+        if (input.prop('name') === 'birthday' && !checkValidBirthday(inputData.value)) {
           processElementIfNotValid(input, inputData, 'is not valid');
           validForm = false;
         }
